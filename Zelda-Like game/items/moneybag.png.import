@@ -2,28 +2,33 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Hp_Full.png-84e816101e025dccf3dadc150a9558fb.stex"
+path="res://.import/moneybag.png-eb3173c86a88391c8c2ac76ce9a63d6b.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
-source_file="res://GUI/Hp_Full.png"
-dest_files=[ "res://.import/Hp_Full.png-84e816101e025dccf3dadc150a9558fb.stex" ]
+source_file="res://items/moneybag.png"
+dest_files=[ "res://.import/moneybag.png-eb3173c86a88391c8c2ac76ce9a63d6b.stex" ]
 
 [params]
 
 compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
+compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
+process/invert_color=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0
