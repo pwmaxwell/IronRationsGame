@@ -2,9 +2,10 @@ extends "res://engine/entity.gd"
 
 func _init():
 	TYPE = "ENEMY"
-	SPEED = 400
+	SPEED = 900
+	SLOWSPEED = 200
+	SPEEDCONTAINER = 400
 	DAMAGE = 10
-	
 
 
 var left = Vector2(-1,0)

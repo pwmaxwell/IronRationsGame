@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://player/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://enemies/meleeEnemy.tscn" type="PackedScene" id=2]
@@ -7,7 +7,6 @@
 [ext_resource path="res://items/moneybag.png" type="Texture" id=5]
 [ext_resource path="res://TESTING TILESET.tres" type="TileSet" id=6]
 [ext_resource path="res://enemies/FinalBoss.tscn" type="PackedScene" id=7]
-[ext_resource path="res://enemies/sk_nh.tscn" type="PackedScene" id=8]
 
 [node name="Node" type="Node"]
 
@@ -78,7 +77,4 @@ scale = Vector2( 0.998446, 1 )
 [node name="Node2D" parent="." instance=ExtResource( 7 )]
 position = Vector2( 820.482, -359.023 )
 scale = Vector2( 0.5, 0.5 )
-
-[node name="sk_nh" parent="." instance=ExtResource( 8 )]
-position = Vector2( 479.679, 59.3391 )
 

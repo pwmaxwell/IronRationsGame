@@ -2,6 +2,8 @@ extends KinematicBody2D
 
 var TYPE = "ENEMY"
 var SPEED = 0
+var SLOWSPEED
+var SPEEDCONTAINER
 var DAMAGE = 0
 
 var movedir = Vector2(0,0)
@@ -11,7 +13,17 @@ var hitstun = 0
 var knockdir = Vector2(0,0)
 var health = 100
 
+var aoehitstun = 0
 
+func lavaaoe():
+	var aoe = load("res://spells/lavaaoe.tscn").instance()
+	aoe.position = get_global_mouse_position()
+	get_parent().add_child(aoe)
+
+func iceaoe():
+	var iceaoe = load("res://spells/iceaoe.tscn").instance()
+	iceaoe.position = get_global_mouse_position()
+	get_parent().add_child(iceaoe)
 
 func movement_loop(): 
 	var motion
@@ -39,8 +51,10 @@ func anim_switch(animation):
 		$anim.play(newanim)
 
 func damage_loop():
+	if aoehitstun > 0:
+		aoehitstun -= 1
 	if hitstun > 0:
-		hitstun -=1
+		hitstun -= 1
 		# Damaged Texture here
 	else:
 		# Normal Texture here
@@ -48,11 +62,20 @@ func damage_loop():
 			queue_free()
 	for area in $hitbox.get_overlapping_areas():
 		var  body = area.get_parent()
-		if hitstun == 0 and body.get("DAMAGE") != null and body.get("TYPE") != TYPE:
+		if hitstun == 0 and body.get("DAMAGE") != null and body.get("TYPE") != TYPE and body.get ("TYPE") != "SPELL":
 			health -= body.get("DAMAGE")
 			hitstun = 10
 			knockdir = global_transform.origin - body.global_transform.origin
-				
+		if hitstun == 0 and body.get("DAMAGE") != null and body.get("TYPE") != TYPE and aoehitstun == 0:
+			health -= body.get("DAMAGE")
+			aoehitstun = 60
+		if body.get("TYPE") == "ENEMY":
+			SPEED = 50
+		if body.get("TYPE") == "SLOWSPELL":  
+			SPEED = SLOWSPEED
+		if body.get("TYPE") != "SLOWSPELL":
+			SPEED = SPEEDCONTAINER
+
 func use_item(item):
 	var newitem = item.instance()
 	newitem.add_to_group(str(newitem.get_name(), self))

@@ -1,5 +1,8 @@
 extends "res://engine/entity.gd"
 
+#This was bugged for some reason. Whenever I hit the skeleton it would knockback and the game would crash
+#If we can figure out what was bugged we can add them into the level
+
 func _init():
 	SPEED = 40
 	TYPE = "ENEMY"
