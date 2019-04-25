@@ -1,10 +1,12 @@
 extends KinematicBody2D
 
+var LEVELONE = "res://areas.test.tscn"
 var TYPE = "ENEMY"
 var SPEED = 0
 var SLOWSPEED
 var SPEEDCONTAINER
 var DAMAGE = 0
+var POSITION
 
 var movedir = Vector2(0,0)
 var spritedir = "down"
@@ -62,7 +64,7 @@ func damage_loop():
 			queue_free()
 	for area in $hitbox.get_overlapping_areas():
 		var  body = area.get_parent()
-		if hitstun == 0 and body.get("DAMAGE") != null and body.get("TYPE") != TYPE and body.get ("TYPE") != "SPELL":
+		if hitstun == 0 and body.get("DAMAGE") != null and body.get("TYPE") != TYPE and body.get ("TYPE") != "SPELL" and body.get("TYPE") != "LADDER":
 			health -= body.get("DAMAGE")
 			hitstun = 10
 			knockdir = global_transform.origin - body.global_transform.origin
@@ -75,6 +77,10 @@ func damage_loop():
 			SPEED = SLOWSPEED
 		if body.get("TYPE") != "SLOWSPELL":
 			SPEED = SPEEDCONTAINER
+		if body.get("TYPE") == "LADDER":
+			print("IDK") #This prints, but the scene does not chance for some reason
+			#print(get_tree().current_scene)
+			get_tree().change_scene("res://areas/shop.tscn") #DOES NOT WORK??????????????
 
 func use_item(item):
 	var newitem = item.instance()

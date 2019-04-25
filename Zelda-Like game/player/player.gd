@@ -5,7 +5,10 @@ func _init():
 	SLOWSPEED = 40
 	SPEED = 70
 	SPEEDCONTAINER = 70
+	#POSITION = position.x + position.y
 	
+	
+
 var state = "default"
 
 
