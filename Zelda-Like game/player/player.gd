@@ -1,12 +1,14 @@
 extends "res://engine/entity.gd"
 
+
+
 func _init():
 	TYPE = "PLAYER"
 	SLOWSPEED = 40
 	SPEED = 70
 	SPEEDCONTAINER = 70
 	#POSITION = position.x + position.y
-	
+	health = 100
 	
 
 var state = "default"
@@ -26,7 +28,10 @@ func state_default():
 	movement_loop()
 	spritedir_loop()
 	damage_loop()
-	print(health)
+	if health == 0:
+		get_tree().change_scene("res://areas/test.tscn") #This will just reset the game
+		#queue_free()
+	#print(health)
 	if movedir != Vector2(0,0):
 		anim_switch("walk")
 	else:
@@ -38,9 +43,12 @@ func state_default():
 		use_item(preload("res://items/arrow.tscn"))
 	if Input.is_action_just_pressed("spell_one"):
 		lavaaoe()
+		
 		#use_item(preload("res://spells/lavaaoe.tscn"))
 	if Input.is_action_just_pressed("spell_two"):
 		iceaoe()
+		#var value = get_node("../HealthBar").get_value()
+		#get_node("../HealthBar").set_value(value - 10)
 
 
 
@@ -66,5 +74,8 @@ func controls_loop():
 	movedir.x = -int(LEFT) + int(RIGHT)
 	movedir.y = -int(UP) + int(DOWN)
 	
+
+
+
 
 

@@ -1,5 +1,5 @@
 extends KinematicBody2D
-
+signal onPlayerHit
 var LEVELONE = "res://areas.test.tscn"
 var TYPE = "ENEMY"
 var SPEED = 0
@@ -7,6 +7,7 @@ var SLOWSPEED
 var SPEEDCONTAINER
 var DAMAGE = 0
 var POSITION
+var MONEY
 
 var movedir = Vector2(0,0)
 var spritedir = "down"
@@ -68,6 +69,9 @@ func damage_loop():
 			health -= body.get("DAMAGE")
 			hitstun = 10
 			knockdir = global_transform.origin - body.global_transform.origin
+			emit_signal("onPlayerHit", health)
+		#if hitstun ==0 and body.get("DAMAGE") != null and body.get("TYPE") == "PLAYER":
+			#connect("onPlayerHit", self, "change_bar")
 		if hitstun == 0 and body.get("DAMAGE") != null and body.get("TYPE") != TYPE and aoehitstun == 0:
 			health -= body.get("DAMAGE")
 			aoehitstun = 60
@@ -78,9 +82,12 @@ func damage_loop():
 		if body.get("TYPE") != "SLOWSPELL":
 			SPEED = SPEEDCONTAINER
 		if body.get("TYPE") == "LADDER":
-			print("IDK") #This prints, but the scene does not chance for some reason
 			#print(get_tree().current_scene)
-			get_tree().change_scene("res://areas/shop.tscn") #DOES NOT WORK??????????????
+			get_tree().change_scene("res://areas/shop.tscn") 
+		if body.get ("TYPE") == "MONEY":
+			MONEY += 10
+			print(MONEY)
+
 
 func use_item(item):
 	var newitem = item.instance()

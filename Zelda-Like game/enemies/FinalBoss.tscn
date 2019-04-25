@@ -1,19 +1,35 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://enemies/FinalBoss.gd" type="Script" id=1]
 [ext_resource path="res://enemies/Golden Oryx Effigy.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 
+[sub_resource type="RectangleShape2D" id=2]
+
+[sub_resource type="RectangleShape2D" id=3]
+
 [node name="KinematicBody2D" type="KinematicBody2D"]
 script = ExtResource( 1 )
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Boss" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="Boss"]
+visible = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="Sight" type="CollisionShape2D" parent="Boss/Area2D"]
 scale = Vector2( 8.9, 8.9 )
 shape = SubResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2( 8.9, 8.9 )
+shape = SubResource( 2 )
+
+[node name="hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+visible = false
+scale = Vector2( 8.9, 8.9 )
+shape = SubResource( 3 )
 

@@ -1,13 +1,14 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://areas/test.gd" type="Script" id=1]
 [ext_resource path="res://player/player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://enemies/meleeEnemy.tscn" type="PackedScene" id=3]
-[ext_resource path="res://tiles/ground.tres" type="TileSet" id=4]
-[ext_resource path="res://items/moneybag.png" type="Texture" id=5]
-[ext_resource path="res://TESTING TILESET.tres" type="TileSet" id=6]
-[ext_resource path="res://enemies/FinalBoss.tscn" type="PackedScene" id=7]
-[ext_resource path="res://tiles/ladderscene.tscn" type="PackedScene" id=8]
+[ext_resource path="res://UI/Healthbar.tscn" type="PackedScene" id=3]
+[ext_resource path="res://enemies/meleeEnemy.tscn" type="PackedScene" id=4]
+[ext_resource path="res://tiles/ground.tres" type="TileSet" id=5]
+[ext_resource path="res://items/moneybag.png" type="Texture" id=6]
+[ext_resource path="res://TESTING TILESET.tres" type="TileSet" id=7]
+[ext_resource path="res://enemies/FinalBoss.tscn" type="PackedScene" id=8]
+[ext_resource path="res://tiles/ladderscene.tscn" type="PackedScene" id=9]
 
 [node name="Node" type="Node"]
 script = ExtResource( 1 )
@@ -15,14 +16,21 @@ script = ExtResource( 1 )
 [node name="player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 233.787, 311.455 )
 
-[node name="meleeEnemy" parent="." instance=ExtResource( 3 )]
+[node name="GUI" parent="player" instance=ExtResource( 3 )]
+margin_left = -177.0
+margin_top = -106.0
+margin_right = 219.0
+margin_bottom = -53.0
+rect_scale = Vector2( 0.4, 0.4 )
+
+[node name="meleeEnemy" parent="." instance=ExtResource( 4 )]
 position = Vector2( 172.197, 627.647 )
 scale = Vector2( 0.998446, 1 )
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2( -41.3102, -7.14989 )
 z_index = -100
-tile_set = ExtResource( 4 )
+tile_set = ExtResource( 5 )
 cell_size = Vector2( 16, 16 )
 collision_use_kinematic = true
 format = 1
@@ -33,49 +41,50 @@ __meta__ = {
 
 [node name="moneybag" type="Sprite" parent="TileMap"]
 position = Vector2( 1226.57, 244.751 )
-texture = ExtResource( 5 )
+texture = ExtResource( 6 )
 
 [node name="moneybag2" type="Sprite" parent="TileMap"]
 position = Vector2( 594.612, 525.852 )
-texture = ExtResource( 5 )
+texture = ExtResource( 6 )
 
 [node name="moneybag3" type="Sprite" parent="TileMap"]
 position = Vector2( 545.591, 279.09 )
-texture = ExtResource( 5 )
+texture = ExtResource( 6 )
 
 [node name="delete" type="TileMap" parent="."]
 z_index = -100
-tile_set = ExtResource( 6 )
+tile_set = ExtResource( 7 )
 cell_size = Vector2( 16, 16 )
 format = 1
 
-[node name="meleeEnemy2" parent="." instance=ExtResource( 3 )]
+[node name="meleeEnemy2" parent="." instance=ExtResource( 4 )]
 position = Vector2( 271.043, 684.012 )
 scale = Vector2( 0.998446, 1 )
 
-[node name="meleeEnemy3" parent="." instance=ExtResource( 3 )]
+[node name="meleeEnemy3" parent="." instance=ExtResource( 4 )]
 position = Vector2( 362.804, 620.14 )
 
-[node name="meleeEnemy4" parent="." instance=ExtResource( 3 )]
+[node name="meleeEnemy4" parent="." instance=ExtResource( 4 )]
 position = Vector2( 408.917, 691.087 )
 scale = Vector2( 0.998446, 1 )
 
-[node name="meleeEnemy7" parent="." instance=ExtResource( 3 )]
+[node name="meleeEnemy7" parent="." instance=ExtResource( 4 )]
 position = Vector2( 562.022, 275.038 )
 scale = Vector2( 0.998446, 1 )
 
-[node name="meleeEnemy8" parent="." instance=ExtResource( 3 )]
+[node name="meleeEnemy8" parent="." instance=ExtResource( 4 )]
 position = Vector2( 599.862, 388.413 )
 scale = Vector2( 0.998446, 1 )
 
-[node name="meleeEnemy9" parent="." instance=ExtResource( 3 )]
+[node name="meleeEnemy9" parent="." instance=ExtResource( 4 )]
 position = Vector2( 731.466, 408.495 )
 scale = Vector2( 0.998446, 1 )
 
-[node name="Node2D" parent="." instance=ExtResource( 7 )]
+[node name="Node2D" parent="." instance=ExtResource( 8 )]
 position = Vector2( 978.611, 198.241 )
 scale = Vector2( 0.5, 0.5 )
 
-[node name="Node2D2" parent="." instance=ExtResource( 8 )]
+[node name="Node2D2" parent="." instance=ExtResource( 9 )]
 position = Vector2( 276.999, 334.998 )
 
+[connection signal="onPlayerHit" from="player" to="player/GUI" method="_on_player_onPlayerHit"]
