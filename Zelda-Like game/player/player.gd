@@ -4,9 +4,9 @@ extends "res://engine/entity.gd"
 
 func _init():
 	TYPE = "PLAYER"
-	SLOWSPEED = 40
-	SPEED = 70
-	SPEEDCONTAINER = 70
+	SLOWSPEED = 50
+	SPEED = 100
+	SPEEDCONTAINER = 100
 	#POSITION = position.x + position.y
 	health = 100
 	

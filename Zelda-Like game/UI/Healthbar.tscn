@@ -29,7 +29,6 @@ margin_top = -7.0
 margin_right = 29.1671
 margin_bottom = 7.0
 text = "HP"
-align = 1
 
 [node name="Bars" type="HBoxContainer" parent="."]
 margin_right = 396.0

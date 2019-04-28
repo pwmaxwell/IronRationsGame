@@ -1,3 +1,5 @@
-extends Node2D
+extends "res://engine/entity.gd"
 
-var TYPE = "MONEY"
+
+_init():
+	TYPE = "MONEY"
